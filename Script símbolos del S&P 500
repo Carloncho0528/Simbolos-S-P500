@@ -1,0 +1,26 @@
+import pandas as pd
+
+def get_sp500_symbols():
+    # URL de Wikipedia que contiene la lista actual de empresas del S&P 500
+    url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
+    
+    # Leer las tablas de la página
+    tables = pd.read_html(url)
+    
+    # La primera tabla contiene la información que necesitamos
+    df = tables[0]
+    
+    # Obtenemos la columna de símbolos
+    symbols = df['Symbol'].tolist()
+    
+    return symbols
+
+# Obtener los símbolos
+sp500_symbols = get_sp500_symbols()
+
+# Imprimir los primeros 10 símbolos como ejemplo
+print("Primeros 10 símbolos del S&P 500:")
+print(sp500_symbols[:10])
+
+# Imprimir el número total de símbolos
+print(f"\nNúmero total de símbolos: {len(sp500_symbols)}")
